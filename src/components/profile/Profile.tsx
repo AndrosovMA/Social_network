@@ -1,7 +1,7 @@
 import avatar from '../../img/ava.jpg'
 
 import content_img from '../../img/content.jpg'
-import {MyPost} from "./my_post/MyPost";
+import MyPost from "./my_post/MyPost";
 
 export function Profile() {
     return (

@@ -8,12 +8,14 @@
     grid-gap: 10px 0;
 }
 
-
 .header {
     grid-area: header;
     background-color: lightblue;
+    .logo {
+        width: 95px;
+        height: 60px;
+    }
 }
-
 
 .navbar {
     grid-area: navbar;
@@ -74,9 +76,24 @@
     }
 }
 
+.dialogs {
+    grid-area: content;
+    background-color: lightgray;
 
-.logo {
-    width: 95px;
-    height: 60px;
 }
 
+
+.music {
+    grid-area: content;
+    background-color: lightgray;
+}
+
+.news {
+    grid-area: content;
+    background-color: lightgray;
+}
+
+.settings {
+    grid-area: content;
+    background-color: lightgray;
+}

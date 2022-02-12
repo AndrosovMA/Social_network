@@ -1,7 +1,7 @@
-import {Post} from "./post/Post";
+import Post from "./post/Post";
 import React from "react";
 
-export function MyPost() {
+const MyPost = () => {
     // handleChenge(event) {
     //     console.log(event)
     //     event.preventDefault();
@@ -19,8 +19,10 @@ export function MyPost() {
             </div>
 
             New post:
-            <Post message={'Learn TypeScript'}/>
-            <Post message={'TypeScript no hard'}/>
+            <Post message={'Learn TypeScript'} likeCount={34}/>
+            <Post message={'TypeScript no hard'} likeCount={3}/>
         </div>
     )
 }
+
+export default MyPost;

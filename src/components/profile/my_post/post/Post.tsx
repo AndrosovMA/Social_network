@@ -3,9 +3,10 @@ import React from "react";
 
 type postProps = {
    message: string;
+    likeCount: number;
 }
 
-export function Post ({message} : postProps)  {
+const Post =  ({message, likeCount} : postProps) => {
     return (
         <>
             <div className="post__get">
@@ -16,9 +17,10 @@ export function Post ({message} : postProps)  {
 
             </div>
             <div className="like">
-                like
+                like {likeCount}
             </div>
         </>
     )
 }
 
+export default Post;

@@ -1,22 +1,36 @@
 /** React*/
 import React from 'react';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 /** Main components*/
 import {Header} from "./components/header/Header";
 import {Navbar} from "./components/navbar/Navbar";
-import {Profile} from "./components/profile/Profile";
 
 /** Navigation components*/
-//
+import {Profile} from "./components/profile/Profile";
+import {Dialogs} from "./components/dialogs/Dialogs";
+import {News} from "./components/news/News";
+import {Music} from "./components/music/Music";
+import {Settings} from "./components/settings/Settings";
+
 
 function App() {
-  return (
-    <div className="wrapper">
-        <Header/>
-        <Navbar/>
-        <Profile/>
-    </div>
-  );
+    return (
+        <Router>
+            <div className="wrapper">
+                <Header/>
+                <Navbar/>
+
+                <Routes>
+                    <Route path="/Profile" element={<Profile/>} />
+                    <Route path="/Dialogs" element={<Dialogs/>} />
+                    <Route path="/News" element={<News/>} />
+                    <Route path="/Music" element={<Music/>}/>
+                    <Route path="/Settings" element={<Settings/>}/>
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;

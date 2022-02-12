@@ -1,12 +1,17 @@
 import postImg from '../../../../img/post.png'
+import React from "react";
 
-export function Post() {
+type postProps = {
+   message: string;
+}
+
+export function Post ({message} : postProps)  {
     return (
         <>
             <div className="post__get">
                 <img src={postImg} alt=""/>
                 <div className="massage">
-                    post
+                    {message}
                 </div>
 
             </div>
@@ -16,3 +21,4 @@ export function Post() {
         </>
     )
 }
+

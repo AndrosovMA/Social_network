@@ -16,7 +16,7 @@ export function Profile() {
                     <div> LogicalThinker</div>
                     <div> Web Developer</div>
                     <div> Frontend</div>
-                    <div> Sankt-Peterburg</div>
+                    <div> Saint Petersburg</div>
                  </div>
             </div>
 

@@ -79,7 +79,14 @@
 .dialogs {
     grid-area: content;
     background-color: lightgray;
+    display: flex;
 
+    .dialogs__users{
+        padding: 10px 10px;
+    }
+    .messages__users{
+        padding: 10px 10px;
+    }
 }
 
 

@@ -1,4 +1,4 @@
-
+import {FC} from "react";
 
 interface massagesUsers {
     id: number,
@@ -9,23 +9,17 @@ type Props = {
     massagesUsers: massagesUsers[]
 }
 
+const Messages: FC<Props> = ({massagesUsers}) => {
+    let messages = massagesUsers.map((el) => {
+        return (
+        <div className="user__message" key={el.id}>
+            {el.message}
+        </div> )
+    })
 
-const Messages = ({massagesUsers}:Props) => {
     return (
         <div className="messages__users">
-
-            <div className="user__message">
-                happy coding
-            </div>
-            <div className="user__message">
-                good hacking
-            </div>
-            <div className="user__message">
-                i'm learn TS
-            </div>
-            <div className="user__message">
-                i'm learn react-router v.6
-            </div>
+            {messages}
         </div>
     )
 }

@@ -1,12 +1,13 @@
 import postImg from '../../../../img/post.png'
-import React from "react";
+import React, {FC} from "react";
 
 type postProps = {
     message: string;
     likeCount: number;
 }
 
-const Post = ({message, likeCount}: postProps) => {
+const Post:FC<postProps> = ({message, likeCount}) => {
+
     return (
         <>
             <div className="post__get">
@@ -24,3 +25,5 @@ const Post = ({message, likeCount}: postProps) => {
 }
 
 export default Post;
+
+

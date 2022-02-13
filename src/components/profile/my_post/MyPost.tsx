@@ -1,11 +1,19 @@
 import Post from "./post/Post";
 import React from "react";
 
+const posts = [
+    {id: 1, message: 'Learn TypeScript', likeCount: 34},
+    {id: 2, message: 'TypeScript no hard', likeCount: 3},
+];
+
 const MyPost = () => {
-    // handleChenge(event) {
-    //     console.log(event)
-    //     event.preventDefault();
-    // }
+    let post = posts.map((el) => {
+        return (
+            <div key={el.id}>
+                <Post message={el.message} likeCount={el.likeCount}/>
+            </div>
+        )
+    })
 
     return (
         <div className="profile__post">
@@ -17,8 +25,7 @@ const MyPost = () => {
             <div>
                 <input className='' type={"button"} value='add post'/>
             </div>
-            <Post message={'Learn TypeScript'} likeCount={34}/>
-            <Post message={'TypeScript no hard'} likeCount={3}/>
+            {post}
         </div>
     )
 }

@@ -14,9 +14,10 @@ type Props = {
 const Dialog: FC<Props> = ({dialogsUsers}) => {
 
     let dialogs = dialogsUsers.map((el) => {
-        return  <div key={el.id} className="user__name">
-                    <NavLink to={String(el.id)}>{el.user}</NavLink>
-                </div>
+        return (
+        <div key={el.id} className="user__name">
+            <NavLink to={String(el.id)}>{el.user}</NavLink>
+        </div> )
     })
 
     return (

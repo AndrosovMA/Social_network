@@ -13,7 +13,6 @@ type Props = {
 const Messages = ({massagesUsers}:Props) => {
     return (
         <div className="messages__users">
-            {massagesUsers[0]["message"]}
 
             <div className="user__message">
                 happy coding

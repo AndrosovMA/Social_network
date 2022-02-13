@@ -1,35 +1,29 @@
-import {NavLink} from "react-router-dom";
+import {Dialog} from "./Dialog/Dialog";
+import {Messages} from "./Messages/Messages";
+import {FC} from "react";
 
-const Dialogs = () => {
+
+const dialogsUsers = [
+    {id: 1, user: 'Max'},
+    {id: 2, user: 'Ivan'},
+    {id: 3, user: 'Georgy'},
+    {id: 4, user: 'Olga'},
+];
+
+const massagesUsers = [
+    {id: 1, message: "happy coding"},
+    {id: 2, message: "good hacking"},
+    {id: 3, message: "i'm learn TS"},  
+    {id: 4, message: "i'm learn react-router v.6"},
+]
+
+
+const Dialogs:FC = () => {
     return (
         <div className='dialogs'>
-
-            <div className="dialogs__users">
-                <div className="user__name active">
-                    <NavLink to='1'>Max</NavLink>
-                </div>
-                <div className="user__name">
-                    <NavLink to='2'>Ivan</NavLink>
-                </div>
-                <div className="user__name">
-                    <NavLink to='3'>Georgy</NavLink>
-                </div>
-                <div className="user__name">
-                    <NavLink to='4'>Olga</NavLink>
-                </div>
-            </div>
-
-
-            <div className="messages__users">
-                <div className="user__message">
-                    happy coding
-                </div>
-                <div className="user__message">
-                    and good hacking
-                </div>
-            </div>
-
-         </div>
+            <Dialog dialogsUsers={dialogsUsers}/>
+            <Messages massagesUsers={massagesUsers}/>
+        </div>
     )
 }
 

@@ -2,11 +2,11 @@ import postImg from '../../../../img/post.png'
 import React from "react";
 
 type postProps = {
-   message: string;
+    message: string;
     likeCount: number;
 }
 
-const Post =  ({message, likeCount} : postProps) => {
+const Post = ({message, likeCount}: postProps) => {
     return (
         <>
             <div className="post__get">

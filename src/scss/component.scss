@@ -62,6 +62,13 @@
     .profile__post {
         padding-left: 10px;
 
+        h3 {
+            margin: 15px 0 5px 0;
+        }
+        input[type='button'] {
+            margin: 0 0 10px 0;
+        }
+
         .post__get {
             display: flex;
             align-items: center;

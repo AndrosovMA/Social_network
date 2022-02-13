@@ -9,7 +9,7 @@ const MyPost = () => {
 
     return (
         <div className="profile__post">
-            My post
+            <h3>My post:</h3>
             <div>
                 {/*<textarea name='message' value='message' onChange={handleChenge}>Введите текс сообщения </textarea>*/}
                 <input type="text"/>
@@ -17,8 +17,6 @@ const MyPost = () => {
             <div>
                 <input className='' type={"button"} value='add post'/>
             </div>
-
-            New post:
             <Post message={'Learn TypeScript'} likeCount={34}/>
             <Post message={'TypeScript no hard'} likeCount={3}/>
         </div>

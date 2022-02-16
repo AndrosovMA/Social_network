@@ -19,8 +19,8 @@ const MyPost = () => {
         <div className="profile__post">
             <h3>My post:</h3>
             <div>
-                {/*<textarea name='message' value='message' onChange={handleChenge}>Введите текс сообщения </textarea>*/}
-                <input type="text"/>
+                <textarea name='message'>Введите текс сообщения </textarea>
+                {/*<input type="text"/>*/}
             </div>
             <div>
                 <input className='' type={"button"} value='add post'/>

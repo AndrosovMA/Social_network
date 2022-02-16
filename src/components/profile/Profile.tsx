@@ -1,10 +1,11 @@
-import avatar from '../../img/ava.jpg'
-
 import content_img from '../../img/content.jpg'
 import MyPost from "./my_post/MyPost";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
-export function Profile() {
+import {state} from "../../redux/state"
+
+const Profile = () => {
+
     return (
         <div className='profile'>
             <img className='profile__img'  src={content_img} alt=""/>
@@ -14,3 +15,5 @@ export function Profile() {
         </div>
     )
 }
+
+export {Profile}

@@ -13,8 +13,12 @@ import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
 
+/** Data information*/
+import {state} from "./redux/state";
 
-function App() {
+
+const App = () => {
+
     return (
         <Router>
             <div className="wrapper">
@@ -22,9 +26,9 @@ function App() {
                 <Navbar/>
 
                 <Routes>
-                    <Route path="/Profile" element={<Profile/>} />
-                    <Route path="/Dialogs" element={<Dialogs/>} />
-                    <Route path="/News" element={<News/>} />
+                    <Route path="/Profile" element={<Profile/>}/>
+                    <Route path="/Dialogs" element={<Dialogs state={state}/>}/>
+                    <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
                 </Routes>

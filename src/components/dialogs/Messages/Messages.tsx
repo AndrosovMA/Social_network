@@ -1,12 +1,8 @@
 import {FC} from "react";
-
-interface massagesUsers {
-    id: number,
-    message: string
-}
+import {MassagesUsersType} from "../../../redux/state";
 
 type Props = {
-    massagesUsers: massagesUsers[]
+    massagesUsers: MassagesUsersType[]
 }
 
 const Messages: FC<Props> = ({massagesUsers}) => {

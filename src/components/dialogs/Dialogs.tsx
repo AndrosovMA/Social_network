@@ -1,14 +1,19 @@
 import {Dialog} from "./Dialog/Dialog";
 import {Messages} from "./Messages/Messages";
+import {DialogsType} from "../../redux/state";
 import {FC} from "react";
-import {State} from "../../redux/state";
 
 
-const Dialogs = (state: State) => {
+type propsType = {
+    dialogs: DialogsType,
+}
+
+const Dialogs: FC<propsType> = (dialogs) => {
+
     return (
         <div className='dialogs'>
-            <Dialog dialogsUsers={state.dialogsUsers}/>
-            <Messages massagesUsers={state.massagesUsers}/>
+            <Dialog dialogsUsers={dialogs.dialogs.dialogsUsers}/>
+            <Messages massagesUsers={dialogs.dialogs.massagesUsers}/>
         </div>
     )
 }
@@ -16,32 +21,3 @@ const Dialogs = (state: State) => {
 export {Dialogs};
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const dialogsUsers = [
-//     {id: 1, user: 'Max'},
-//     {id: 2, user: 'Ivan'},
-//     {id: 3, user: 'Georgy'},
-//     {id: 4, user: 'Olga'},
-// ];
-//
-// const massagesUsers = [
-//     {id: 1, message: "happy coding"},
-//     {id: 2, message: "good hacking"},
-//     {id: 3, message: "i'm learn TS"},
-//     {id: 4, message: "i'm learn react-router v.6"},
-// ]

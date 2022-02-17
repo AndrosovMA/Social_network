@@ -1,13 +1,14 @@
 import Post from "./post/Post";
-import React from "react";
+import React, {FC} from "react";
+import {PostType} from "../../../redux/state";
 
-const posts = [
-    {id: 1, message: 'Learn TypeScript', likeCount: 34},
-    {id: 2, message: 'TypeScript no hard', likeCount: 3},
-];
+type Props = {
+    post: PostType[],
+}
 
-const MyPost = () => {
-    let post = posts.map((el) => {
+const MyPost: FC<Props> = (post) => {
+
+    let posts = post.post.map((el) => {
         return (
             <div key={el.id}>
                 <Post message={el.message} likeCount={el.likeCount}/>
@@ -20,14 +21,14 @@ const MyPost = () => {
             <h3>My post:</h3>
             <div>
                 <textarea name='message'>Введите текс сообщения </textarea>
-                {/*<input type="text"/>*/}
             </div>
             <div>
                 <input className='' type={"button"} value='add post'/>
             </div>
-            {post}
+            {posts}
         </div>
     )
 }
 
 export default MyPost;
+

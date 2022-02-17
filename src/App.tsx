@@ -13,12 +13,17 @@ import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
 
-/** Data information*/
-import {state} from "./redux/state";
+/** TypeScript - React*/
+import {FC} from "react";
+import {State} from "./redux/state";
 
 
-const App = () => {
+type Props = {
+    stateProp: State
+}
 
+const App: FC<Props> = (stateProp) => {
+console.log('APP.tsx:', stateProp);
     return (
         <Router>
             <div className="wrapper">
@@ -26,8 +31,8 @@ const App = () => {
                 <Navbar/>
 
                 <Routes>
-                    <Route path="/Profile" element={<Profile/>}/>
-                    <Route path="/Dialogs" element={<Dialogs state={state}/>}/>
+                    <Route path="/Profile" element={<Profile profile={stateProp.stateProp.profile}/>}/>
+                    <Route path="/Dialogs" element={<Dialogs dialogs={stateProp.stateProp.dialogs}/>}/>
                     <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>
                     <Route path="/Settings" element={<Settings/>}/>

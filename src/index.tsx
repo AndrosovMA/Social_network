@@ -1,12 +1,21 @@
+/** React*/
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './scss/index.scss';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+/** CSS*/
+import './scss/index.scss';
+
+/** Components*/
+import App from './App';
+
+/** Data information*/
+import {state} from "./redux/state";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App stateProp={state}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

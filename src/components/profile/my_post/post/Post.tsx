@@ -1,12 +1,12 @@
 import postImg from '../../../../img/post.png'
 import React, {FC} from "react";
 
-type postProps = {
+type Props = {
     message: string;
     likeCount: number;
 }
 
-const Post:FC<postProps> = ({message, likeCount}) => {
+const Post: FC<Props> = ({message, likeCount}) => {
 
     return (
         <>

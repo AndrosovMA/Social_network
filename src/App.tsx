@@ -23,7 +23,7 @@ type Props = {
 }
 
 const App: FC<Props> = (stateProp) => {
-console.log('APP.tsx:', stateProp);
+
     return (
         <Router>
             <div className="wrapper">

@@ -14,16 +14,23 @@ const MyPost: FC<Props> = (post) => {
                 <Post message={el.message} likeCount={el.likeCount}/>
             </div>
         )
-    })
+    });
+
+    let getRefTextarea = React.createRef<HTMLTextAreaElement>()
+
+    const handlerClick = () => {
+        let getTextareaValue = getRefTextarea.current?.value;
+        console.log(getTextareaValue)
+    };
 
     return (
         <div className="profile__post">
             <h3>My post:</h3>
             <div>
-                <textarea name='message'>Введите текс сообщения </textarea>
+                <textarea placeholder='Введите текст' ref={getRefTextarea}/>
             </div>
             <div>
-                <input className='' type={"button"} value='add post'/>
+                <input type={"button"} onClick={handlerClick} value='add post'/>
             </div>
             {posts}
         </div>

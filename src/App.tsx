@@ -13,13 +13,14 @@ import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
 
-/** TypeScript - React*/
+/** Types*/
 import {FC} from "react";
 import {State} from "./redux/state";
 
 
 type Props = {
     stateProp: State
+    addPostInState: (message:string) => void
 }
 
 const App: FC<Props> = (stateProp) => {
@@ -31,7 +32,8 @@ const App: FC<Props> = (stateProp) => {
                 <Navbar/>
 
                 <Routes>
-                    <Route path="/Profile" element={<Profile profile={stateProp.stateProp.profile}/>}/>
+                    <Route path="/Profile" element={<Profile profile={stateProp.stateProp.profile}
+                                                             addPostInState={stateProp.addPostInState}/>}/>
                     <Route path="/Dialogs" element={<Dialogs dialogs={stateProp.stateProp.dialogs}/>}/>
                     <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>

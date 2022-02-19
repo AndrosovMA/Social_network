@@ -1,3 +1,5 @@
+import {RerenderEntireTree} from "../render";
+
 export type PostType = {
     id: number,
     message: string,
@@ -50,5 +52,16 @@ let state: State = {
         ]
     }
 }
-
 export {state};
+
+const addPostInState = (message:string):void => {
+    let newPost = {
+        id:state.profile.posts.length + 1,
+        message:message,
+        likeCount:0
+    }
+    state.profile.posts.push(newPost);
+    RerenderEntireTree(state);
+
+}
+export {addPostInState};

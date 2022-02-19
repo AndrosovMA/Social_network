@@ -4,6 +4,7 @@ import {PostType} from "../../../redux/state";
 
 type Props = {
     post: PostType[],
+    addPostInState: (message:string) => void
 }
 
 const MyPost: FC<Props> = (post) => {
@@ -19,8 +20,13 @@ const MyPost: FC<Props> = (post) => {
     let getRefTextarea = React.createRef<HTMLTextAreaElement>()
 
     const handlerClick = () => {
-        let getTextareaValue = getRefTextarea.current?.value;
-        console.log(getTextareaValue)
+        console.log(getRefTextarea.current?.value === undefined);
+
+        if (getRefTextarea.current?.value !== undefined) {
+            let getTextareaValue = getRefTextarea.current?.value;
+            post.addPostInState(getTextareaValue)
+            getRefTextarea.current.value = '';
+        }
     };
 
     return (

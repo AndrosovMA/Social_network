@@ -18,6 +18,7 @@ export type MassagesUsersType = {
 
 export  type ProfileType = {
     posts: Array<PostType>,
+    newPostText: string,
 }
 
 export  type DialogsType = {
@@ -35,7 +36,8 @@ let state: State = {
         posts: [
             {id: 1, message: 'Learn TypeScript', likeCount: 34},
             {id: 2, message: 'TypeScript no hard', likeCount: 3},
-        ]
+        ],
+        newPostText: '',
     },
     dialogs: {
         dialogsUsers: [
@@ -52,16 +54,23 @@ let state: State = {
         ]
     }
 }
-export {state};
 
-const addPostInState = (message:string):void => {
+const addPostInState = (message: string): void => {
     let newPost = {
-        id:state.profile.posts.length + 1,
-        message:message,
-        likeCount:0
+        id: state.profile.posts.length + 1,
+        message: message,
+        likeCount: 0
     }
     state.profile.posts.push(newPost);
     RerenderEntireTree(state);
-
 }
+
+const updateNewPostText = (value: string): void => {
+    state.profile.newPostText = value;
+    RerenderEntireTree(state);
+}
+
+
+export {state};
 export {addPostInState};
+export {updateNewPostText}

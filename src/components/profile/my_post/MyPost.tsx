@@ -4,7 +4,9 @@ import {PostType} from "../../../redux/state";
 
 type Props = {
     post: PostType[],
-    addPostInState: (message:string) => void
+    newPostText: string,
+    addPostInState: (message:string) => void,
+    updateNewPostText: (value:string) => void
 }
 
 const MyPost: FC<Props> = (post) => {
@@ -20,20 +22,28 @@ const MyPost: FC<Props> = (post) => {
     let getRefTextarea = React.createRef<HTMLTextAreaElement>()
 
     const handlerClick = () => {
-        console.log(getRefTextarea.current?.value === undefined);
-
         if (getRefTextarea.current?.value !== undefined) {
             let getTextareaValue = getRefTextarea.current?.value;
             post.addPostInState(getTextareaValue)
-            getRefTextarea.current.value = '';
+            getRefTextarea.current.value = ''; //перенести в бизнес логику
         }
     };
+
+    const handlerTextarea = () => {
+        if (getRefTextarea.current?.value !== undefined) {
+            let getTextareaValue = getRefTextarea.current?.value;
+            post.updateNewPostText(getTextareaValue);
+        }
+    }
 
     return (
         <div className="profile__post">
             <h3>My post:</h3>
             <div>
-                <textarea placeholder='Введите текст' ref={getRefTextarea}/>
+                <textarea placeholder='Введите текст'
+                          value={post.newPostText}
+                          onChange={handlerTextarea}
+                          ref={getRefTextarea}/>
             </div>
             <div>
                 <input type={"button"} onClick={handlerClick} value='add post'/>
@@ -43,5 +53,5 @@ const MyPost: FC<Props> = (post) => {
     )
 }
 
-export default MyPost;
+export {MyPost};
 

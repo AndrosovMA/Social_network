@@ -21,6 +21,7 @@ import {State} from "./redux/state";
 type Props = {
     stateProp: State
     addPostInState: (message:string) => void
+    updateNewPostText: (value:string) => void
 }
 
 const App: FC<Props> = (stateProp) => {
@@ -33,6 +34,7 @@ const App: FC<Props> = (stateProp) => {
 
                 <Routes>
                     <Route path="/Profile" element={<Profile profile={stateProp.stateProp.profile}
+                                                             updateNewPostText={stateProp.updateNewPostText}
                                                              addPostInState={stateProp.addPostInState}/>}/>
                     <Route path="/Dialogs" element={<Dialogs dialogs={stateProp.stateProp.dialogs}/>}/>
                     <Route path="/News" element={<News/>}/>

@@ -5,7 +5,7 @@ import React from "react";
 /** Components*/
 import App from "./App";
 
-import {addPostInState, DialogsType, ProfileType} from "./redux/state";
+import {addPostInState, updateNewPostText, DialogsType, ProfileType} from "./redux/state";
 
 type State = {
     profile: ProfileType,
@@ -15,7 +15,8 @@ type State = {
 const RerenderEntireTree= (state:State) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App stateProp={state} addPostInState={addPostInState}/>
+            <App stateProp={state} addPostInState={addPostInState}
+                 updateNewPostText={updateNewPostText}/>
         </React.StrictMode>,
         document.getElementById('root')
     );

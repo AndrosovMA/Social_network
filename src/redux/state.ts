@@ -1,5 +1,3 @@
-import {RerenderEntireTree} from "../render";
-
 export type PostType = {
     id: number,
     message: string,
@@ -29,6 +27,10 @@ export  type DialogsType = {
 export type State = {
     profile: ProfileType,
     dialogs: DialogsType,
+}
+
+let RerenderEntireTree = (state:State)=> {
+
 }
 
 let state: State = {
@@ -70,7 +72,12 @@ const updateNewPostText = (value: string): void => {
     RerenderEntireTree(state);
 }
 
+const subscribe = (observer:(state:State)=>void)=> {
+    RerenderEntireTree = observer;
+}
+
 
 export {state};
 export {addPostInState};
 export {updateNewPostText}
+export {subscribe};

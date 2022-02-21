@@ -15,16 +15,13 @@ import {Settings} from "./components/settings/Settings";
 
 /** Types*/
 import {FC} from "react";
-import {State} from "./redux/state";
+import {Store} from "./redux/state";
 
-
-type Props = {
-    stateProp: State
-    addPostInState: (message:string) => void
-    updateNewPostText: (value:string) => void
+type PropsApp = {
+    store: Store
 }
 
-const App: FC<Props> = (stateProp) => {
+const App: FC<PropsApp> = (store) => {
 
     return (
         <Router>
@@ -33,10 +30,10 @@ const App: FC<Props> = (stateProp) => {
                 <Navbar/>
 
                 <Routes>
-                    <Route path="/Profile" element={<Profile profile={stateProp.stateProp.profile}
-                                                             updateNewPostText={stateProp.updateNewPostText}
-                                                             addPostInState={stateProp.addPostInState}/>}/>
-                    <Route path="/Dialogs" element={<Dialogs dialogs={stateProp.stateProp.dialogs}/>}/>
+                    <Route path="/Profile" element={<Profile profile={store.store.getState().profile}
+                                                             updateNewPostText={store.store.updateNewPostText.bind(store.store)}
+                                                             addPostInState={store.store.addPostInState.bind(store.store)}/>}/>
+                    <Route path="/Dialogs" element={<Dialogs dialogs={store.store.getState().dialogs}/>}/>
                     <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
@@ -47,3 +44,21 @@ const App: FC<Props> = (stateProp) => {
 }
 
 export default App;
+
+
+
+
+
+// import {State} from "./redux/state";
+
+// type Props = {
+//     stateProp: State
+//     addPostInState: (message:string) => void
+//     updateNewPostText: (value:string) => void
+// }
+
+
+// <Route path="/Profile" element={<Profile profile={stateProp.stateProp.profile}
+//                                          updateNewPostText={stateProp.updateNewPostText}
+//                                          addPostInState={stateProp.addPostInState}/>}/>
+// <Route path="/Dialogs" element={<Dialogs dialogs={stateProp.stateProp.dialogs}/>}/>

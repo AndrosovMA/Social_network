@@ -6,42 +6,38 @@ import ReactDOM from "react-dom";
 import './scss/index.scss';
 
 /** Data information*/
-import {state} from "./redux/state";
-import {addPostInState, updateNewPostText, DialogsType, ProfileType} from "./redux/state";
-import {subscribe} from "./redux/state";
+import {store} from "./redux/state";
 
-/** Components*/
+/** Components and Type*/
 import App from "./App";
+import {Store} from "./redux/state";
 
 
-type State = {
-    profile: ProfileType,
-    dialogs: DialogsType,
-}
-
-const RerenderEntireTree = (state: State) => {
+const RerenderEntireTree = (store: Store) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App stateProp={state} addPostInState={addPostInState}
-                 updateNewPostText={updateNewPostText}/>
+            <App store={store}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
-RerenderEntireTree(state);
+RerenderEntireTree(store);
 
-subscribe(RerenderEntireTree);
-
-
-
-export {RerenderEntireTree}
+store.subscribe(RerenderEntireTree);
 
 
 
 
 
 
+// export {RerenderEntireTree}
+
+// <React.StrictMode>
+//     <App stateProp={state} addPostInState={addPostInState}
+//          updateNewPostText={updateNewPostText}/>
+// </React.StrictMode>,
 
 
-
-
+// import {state} from "./redux/state";
+// import {addPostInState, updateNewPostText, DialogsType, ProfileType} from "./redux/state";
+// import {subscribe} from "./redux/state";

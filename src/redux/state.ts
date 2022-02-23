@@ -1,3 +1,28 @@
+/** action_type conception Redux*/
+const UPDATE_NEW_POST_TEXT:string = 'UPDATE_NEW_POST_TEXT';
+const ADD_POST_IN_STATE:string = 'ADD_POST_IN_STATE';
+
+// export type AddPostActionCreator = {
+//     addPostInStateActionCreator: (text:string)=> {
+//         type: string,
+//         value: string
+//     }
+// }
+//
+// export type UpdatePostTextActionCreator = {
+//     updateNewPostTextActionCreator: (symbol:string)=> {
+//         type: string,
+//         value: string
+//     }
+// }
+//
+// export type ActionType = {
+//     updateNewPostTextActionCreator?: UpdatePostTextActionCreator,
+//     addPostInStateActionCreator?: AddPostActionCreator
+// }
+
+
+/** description types*/
 export type PostType = {
     id: number,
     message: string,
@@ -33,15 +58,14 @@ export type Store = {
     _callSubscriber: (store: Store) => void,
     _state: State,
     getState:()=> State
-    addPostInState: (message: string) => void,
-    updateNewPostText: (value: string) => void,
     subscribe: (observer: (store: Store) => void) => void
+    dispatch: (action:any) => void
 }
 
 
-let store: Store = {
+export const store: Store = {
     _callSubscriber(store) {
-        //уведосление подписчика по сути это RerenderEntireTree
+        //уведосление подписчика  - по сути это RerenderEntireTree
     },
     _state: {
         profile: {
@@ -69,24 +93,45 @@ let store: Store = {
     getState() {
         return this._state
     },
-    addPostInState(message) {
-        let newPost = {
-            id: this._state.profile.posts.length + 1,
-            message: message,
-            likeCount: 0
-        }
-        this._state.profile.posts.push(newPost);
-        this._callSubscriber(store);
-    },
-    updateNewPostText(value) {
-        this._state.profile.newPostText = value;
-        this._callSubscriber(store);
-    },
     subscribe(observer) {
         this._callSubscriber = observer;
+    },
+
+    /** dispatch conception Redux*/
+    dispatch(action: any){
+        if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.profile.newPostText = action.value;
+            this._callSubscriber(store);
+
+        } else
+        if (action.type === ADD_POST_IN_STATE) {
+            let newPost = {
+                id: this._state.profile.posts.length + 1,
+                message: action.value,
+                likeCount: 0
+            }
+            this._state.profile.posts.push(newPost);
+            this._state.profile.newPostText = '';
+            this._callSubscriber(store);
+        }
     }
 }
-export {store};
+
+/** action creator - conception Redux*/
+export const updateNewPostTextActionCreator = (symbol:string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        value: symbol
+    }
+};
+
+export const addPostInStateActionCreator = (text:string) => {
+    return {
+        type: ADD_POST_IN_STATE,
+        value: text
+    }
+};
+
 
 
 

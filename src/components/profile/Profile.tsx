@@ -12,21 +12,19 @@ import {FC} from "react";
 
 type Props = {
     profile: ProfileType
-    addPostInState: (message:string) => void
-    updateNewPostText: (value:string) => void
+    dispatch: (acton: any) => void
 }
 
 const Profile: FC<Props> = (profile) => {
 
     return (
         <div className='profile'>
-            <img className='profile__img'  src={content_img} alt=""/>
+            <img className='profile__img' src={content_img} alt=""/>
 
             <ProfileInfo/>
             <MyPost post={profile.profile.posts}
-                    addPostInState={profile.addPostInState}
                     newPostText={profile.profile.newPostText}
-                    updateNewPostText={profile.updateNewPostText}
+                    dispatch={profile.dispatch}
             />
         </div>
     )

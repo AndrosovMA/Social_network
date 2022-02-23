@@ -2,11 +2,14 @@ import Post from "./post/Post";
 import React, {FC} from "react";
 import {PostType} from "../../../redux/state";
 
+/** action creator - conception Redux*/
+import {updateNewPostTextActionCreator} from "../../../redux/state";
+import {addPostInStateActionCreator} from "../../../redux/state";
+
 type Props = {
     post: PostType[],
     newPostText: string,
-    addPostInState: (message:string) => void,
-    updateNewPostText: (value:string) => void
+    dispatch:(action:any) => void
 }
 
 const MyPost: FC<Props> = (post) => {
@@ -24,15 +27,14 @@ const MyPost: FC<Props> = (post) => {
     const handlerClick = () => {
         if (getRefTextarea.current?.value !== undefined) {
             let getTextareaValue = getRefTextarea.current?.value;
-            post.addPostInState(getTextareaValue)
-            getRefTextarea.current.value = ''; //перенести в бизнес логику
+            post.dispatch(addPostInStateActionCreator(getTextareaValue))
         }
     };
 
     const handlerTextarea = () => {
         if (getRefTextarea.current?.value !== undefined) {
             let getTextareaValue = getRefTextarea.current?.value;
-            post.updateNewPostText(getTextareaValue);
+            post.dispatch(updateNewPostTextActionCreator(getTextareaValue));
         }
     }
 

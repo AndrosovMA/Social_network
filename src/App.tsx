@@ -31,8 +31,8 @@ const App: FC<PropsApp> = (store) => {
 
                 <Routes>
                     <Route path="/Profile" element={<Profile profile={store.store.getState().profile}
-                                                             updateNewPostText={store.store.updateNewPostText.bind(store.store)}
-                                                             addPostInState={store.store.addPostInState.bind(store.store)}/>}/>
+                                                             dispatch={store.store.dispatch.bind(store.store)}/>}
+                    />
                     <Route path="/Dialogs" element={<Dialogs dialogs={store.store.getState().dialogs}/>}/>
                     <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>
@@ -46,19 +46,3 @@ const App: FC<PropsApp> = (store) => {
 export default App;
 
 
-
-
-
-// import {State} from "./redux/state";
-
-// type Props = {
-//     stateProp: State
-//     addPostInState: (message:string) => void
-//     updateNewPostText: (value:string) => void
-// }
-
-
-// <Route path="/Profile" element={<Profile profile={stateProp.stateProp.profile}
-//                                          updateNewPostText={stateProp.updateNewPostText}
-//                                          addPostInState={stateProp.addPostInState}/>}/>
-// <Route path="/Dialogs" element={<Dialogs dialogs={stateProp.stateProp.dialogs}/>}/>

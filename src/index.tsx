@@ -28,16 +28,3 @@ store.subscribe(RerenderEntireTree);
 
 
 
-
-
-// export {RerenderEntireTree}
-
-// <React.StrictMode>
-//     <App stateProp={state} addPostInState={addPostInState}
-//          updateNewPostText={updateNewPostText}/>
-// </React.StrictMode>,
-
-
-// import {state} from "./redux/state";
-// import {addPostInState, updateNewPostText, DialogsType, ProfileType} from "./redux/state";
-// import {subscribe} from "./redux/state";

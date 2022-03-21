@@ -1,6 +1,6 @@
 import Post from "./post/Post";
 import React, {FC} from "react";
-import {PostType} from "../../../redux/state";
+import {Action, PostType} from "../../../redux/state";
 
 /** action creator - conception Redux*/
 import {updateNewPostTextActionCreator} from "../../../redux/state";
@@ -9,7 +9,7 @@ import {addPostInStateActionCreator} from "../../../redux/state";
 type Props = {
     post: PostType[],
     newPostText: string,
-    dispatch:(action:any) => void
+    dispatch:(action:Action) => void
 }
 
 const MyPost: FC<Props> = (post) => {

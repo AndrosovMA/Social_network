@@ -21,7 +21,7 @@ type PropsApp = {
     store: Store
 }
 
-const App: FC<PropsApp> = (store) => {
+const App: FC<PropsApp> = (props) => {
 
     return (
         <Router>
@@ -30,10 +30,10 @@ const App: FC<PropsApp> = (store) => {
                 <Navbar/>
 
                 <Routes>
-                    <Route path="/Profile" element={<Profile profile={store.store.getState().profile}
-                                                             dispatch={store.store.dispatch.bind(store.store)}/>}
+                    <Route path="/Profile" element={<Profile profile={props.store.getState().profile}
+                                                             dispatch={props.store.dispatch.bind(props.store)}/>}
                     />
-                    <Route path="/Dialogs" element={<Dialogs dialogs={store.store.getState().dialogs}/>}/>
+                    <Route path="/Dialogs" element={<Dialogs dialogs={props.store.getState().dialogs}/>}/>
                     <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>
                     <Route path="/Settings" element={<Settings/>}/>

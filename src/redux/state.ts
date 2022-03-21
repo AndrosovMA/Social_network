@@ -1,26 +1,6 @@
 /** action_type conception Redux*/
-const UPDATE_NEW_POST_TEXT:string = 'UPDATE_NEW_POST_TEXT';
-const ADD_POST_IN_STATE:string = 'ADD_POST_IN_STATE';
-
-// export type AddPostActionCreator = {
-//     addPostInStateActionCreator: (text:string)=> {
-//         type: string,
-//         value: string
-//     }
-// }
-//
-// export type UpdatePostTextActionCreator = {
-//     updateNewPostTextActionCreator: (symbol:string)=> {
-//         type: string,
-//         value: string
-//     }
-// }
-//
-// export type ActionType = {
-//     updateNewPostTextActionCreator?: UpdatePostTextActionCreator,
-//     addPostInStateActionCreator?: AddPostActionCreator
-// }
-
+const UPDATE_NEW_POST_TEXT: string = 'UPDATE_NEW_POST_TEXT';
+const ADD_POST_IN_STATE: string = 'ADD_POST_IN_STATE';
 
 /** description types*/
 export type PostType = {
@@ -28,44 +8,42 @@ export type PostType = {
     message: string,
     likeCount: number,
 }
-
 export type DialogsUsersType = {
     id: number,
     user: string,
 }
-
 export type MassagesUsersType = {
     id: number,
     message: string,
 }
-
-export  type ProfileType = {
+export type ProfileType = {
     posts: Array<PostType>,
     newPostText: string,
 }
-
-export  type DialogsType = {
+export type DialogsType = {
     dialogsUsers: Array<DialogsUsersType>,
     massagesUsers: Array<MassagesUsersType>,
 }
-
 export type State = {
     profile: ProfileType,
     dialogs: DialogsType,
 }
-
 export type Store = {
     _callSubscriber: (store: Store) => void,
     _state: State,
-    getState:()=> State
+    getState: () => State
     subscribe: (observer: (store: Store) => void) => void
-    dispatch: (action:any) => void
+    dispatch: (action: Action) => void
 }
-
+export type Action = {
+    type: string
+    value: string
+}
+export type ActionCreator = (text:string)=> Action;
 
 export const store: Store = {
     _callSubscriber(store) {
-        //уведосление подписчика  - по сути это RerenderEntireTree
+        //уведомление подписчика  - по сути это RerenderEntireTree
     },
     _state: {
         profile: {
@@ -90,6 +68,7 @@ export const store: Store = {
             ]
         }
     },
+
     getState() {
         return this._state
     },
@@ -98,13 +77,12 @@ export const store: Store = {
     },
 
     /** dispatch conception Redux*/
-    dispatch(action: any){
+    dispatch(action: Action) {
         if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profile.newPostText = action.value;
             this._callSubscriber(store);
 
-        } else
-        if (action.type === ADD_POST_IN_STATE) {
+        } else if (action.type === ADD_POST_IN_STATE) {
             let newPost = {
                 id: this._state.profile.posts.length + 1,
                 message: action.value,
@@ -118,14 +96,13 @@ export const store: Store = {
 }
 
 /** action creator - conception Redux*/
-export const updateNewPostTextActionCreator = (symbol:string) => {
+export const updateNewPostTextActionCreator = (symbol: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         value: symbol
     }
 };
-
-export const addPostInStateActionCreator = (text:string) => {
+export const addPostInStateActionCreator = (text: string) => {
     return {
         type: ADD_POST_IN_STATE,
         value: text

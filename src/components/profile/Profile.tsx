@@ -6,25 +6,24 @@ import {MyPost} from "./my_post/MyPost";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
 /** Types*/
-import {ProfileType} from "../../redux/state";
+import {ProfileType, Action } from "../../redux/state";
 import {FC} from "react";
-
 
 type Props = {
     profile: ProfileType
-    dispatch: (acton: any) => void
+    dispatch: (acton: Action) => void
 }
 
-const Profile: FC<Props> = (profile) => {
+const Profile: FC<Props> = (props) => {
 
     return (
         <div className='profile'>
             <img className='profile__img' src={content_img} alt=""/>
 
             <ProfileInfo/>
-            <MyPost post={profile.profile.posts}
-                    newPostText={profile.profile.newPostText}
-                    dispatch={profile.dispatch}
+            <MyPost post={props.profile.posts}
+                    newPostText={props.profile.newPostText}
+                    dispatch={props.dispatch}
             />
         </div>
     )

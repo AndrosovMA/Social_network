@@ -33,7 +33,8 @@ const App: FC<PropsApp> = (props) => {
                     <Route path="/Profile" element={<Profile profile={props.store.getState().profile}
                                                              dispatch={props.store.dispatch.bind(props.store)}/>}
                     />
-                    <Route path="/Dialogs" element={<Dialogs dialogs={props.store.getState().dialogs}/>}/>
+                    <Route path="/Dialogs" element={<Dialogs dialogs={props.store.getState().dialogs}
+                                                             dispatch={props.store.dispatch.bind(props.store)}/>}/>
                     <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>
                     <Route path="/Settings" element={<Settings/>}/>

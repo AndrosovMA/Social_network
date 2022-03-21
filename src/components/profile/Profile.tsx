@@ -21,7 +21,7 @@ const Profile: FC<Props> = (props) => {
             <img className='profile__img' src={content_img} alt=""/>
 
             <ProfileInfo/>
-            <MyPost post={props.profile.posts}
+            <MyPost posts={props.profile.posts}
                     newPostText={props.profile.newPostText}
                     dispatch={props.dispatch}
             />

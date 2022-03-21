@@ -1,12 +1,14 @@
 /** action_type conception Redux*/
 const UPDATE_NEW_POST_TEXT: string = 'UPDATE_NEW_POST_TEXT';
 const ADD_POST_IN_STATE: string = 'ADD_POST_IN_STATE';
+const UPDATE_MESSAGE_IN_STATE: string = 'UPDATE_MESSAGE_IN_STATE';
+const ADD_MESSAGE_IN_STATE: string = 'ADD_MESSAGE_IN_STATE';
 
 /** description types*/
 export type PostType = {
-    id: number,
-    message: string,
-    likeCount: number,
+    id: number
+    message: string | undefined
+    likeCount: number
 }
 export type DialogsUsersType = {
     id: number,
@@ -14,15 +16,16 @@ export type DialogsUsersType = {
 }
 export type MassagesUsersType = {
     id: number,
-    message: string,
+    message: string | undefined,
 }
 export type ProfileType = {
     posts: Array<PostType>,
-    newPostText: string,
+    newPostText: string | undefined,
 }
 export type DialogsType = {
     dialogsUsers: Array<DialogsUsersType>,
     massagesUsers: Array<MassagesUsersType>,
+    newMessageText: string | undefined
 }
 export type State = {
     profile: ProfileType,
@@ -37,7 +40,7 @@ export type Store = {
 }
 export type Action = {
     type: string
-    value: string
+    value?: string
 }
 export type ActionCreator = (text:string)=> Action;
 
@@ -65,7 +68,8 @@ export const store: Store = {
                 {id: 2, message: "good hacking"},
                 {id: 3, message: "i'm learn TS"},
                 {id: 4, message: "i'm learn react-router v.6"},
-            ]
+            ],
+            newMessageText: '',
         }
     },
 
@@ -91,6 +95,19 @@ export const store: Store = {
             this._state.profile.posts.push(newPost);
             this._state.profile.newPostText = '';
             this._callSubscriber(store);
+
+        } else if (action.type === UPDATE_MESSAGE_IN_STATE) {
+            this._state.dialogs.newMessageText = action.value;
+            this._callSubscriber(store)
+
+        } else if (action.type === ADD_MESSAGE_IN_STATE) {
+            let newMassageUser = {
+                id: this._state.dialogs.massagesUsers.length +1,
+                message: this._state.dialogs.newMessageText
+            };
+            this._state.dialogs.massagesUsers.push(newMassageUser);
+            this._state.dialogs.newMessageText = '';
+            this._callSubscriber(store);
         }
     }
 }
@@ -108,8 +125,17 @@ export const addPostInStateActionCreator = (text: string) => {
         value: text
     }
 };
-
-
+export const updateNewMessageTextActionCreator = (symbol: string) => {
+    return {
+        type: UPDATE_MESSAGE_IN_STATE,
+        value: symbol
+    }
+};
+export const addMessageInStateActionCreator = () => {
+    return {
+        type: ADD_MESSAGE_IN_STATE,
+    }
+};
 
 
 

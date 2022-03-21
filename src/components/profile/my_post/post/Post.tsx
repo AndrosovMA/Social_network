@@ -2,7 +2,7 @@ import postImg from '../../../../img/post.png'
 import React, {FC} from "react";
 
 type Props = {
-    message: string;
+    message: string | undefined;
     likeCount: number;
 }
 

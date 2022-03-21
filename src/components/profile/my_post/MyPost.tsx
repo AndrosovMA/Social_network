@@ -7,34 +7,32 @@ import {updateNewPostTextActionCreator} from "../../../redux/state";
 import {addPostInStateActionCreator} from "../../../redux/state";
 
 type Props = {
-    post: PostType[],
-    newPostText: string,
+    posts: PostType[],
+    newPostText: string | undefined,
     dispatch:(action:Action) => void
 }
 
-const MyPost: FC<Props> = (post) => {
+const MyPost: FC<Props> = (props) => {
 
-    let posts = post.post.map((el) => {
+    let posts = props.posts.map((el) => {
         return (
             <div key={el.id}>
                 <Post message={el.message} likeCount={el.likeCount}/>
             </div>
         )
     });
-
     let getRefTextarea = React.createRef<HTMLTextAreaElement>()
 
     const handlerClick = () => {
         if (getRefTextarea.current?.value !== undefined) {
             let getTextareaValue = getRefTextarea.current?.value;
-            post.dispatch(addPostInStateActionCreator(getTextareaValue))
+            props.dispatch(addPostInStateActionCreator(getTextareaValue))
         }
     };
-
     const handlerTextarea = () => {
         if (getRefTextarea.current?.value !== undefined) {
             let getTextareaValue = getRefTextarea.current?.value;
-            post.dispatch(updateNewPostTextActionCreator(getTextareaValue));
+            props.dispatch(updateNewPostTextActionCreator(getTextareaValue));
         }
     }
 
@@ -43,7 +41,7 @@ const MyPost: FC<Props> = (post) => {
             <h3>My post:</h3>
             <div>
                 <textarea placeholder='Введите текст'
-                          value={post.newPostText}
+                          value={props.newPostText}
                           onChange={handlerTextarea}
                           ref={getRefTextarea}/>
             </div>

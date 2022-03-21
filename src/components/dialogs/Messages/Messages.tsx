@@ -1,10 +1,6 @@
 import React, {FC} from "react";
-import {
-    Action,
-    addMessageInStateActionCreator,
-    MassagesUsersType,
-    updateNewMessageTextActionCreator
-} from "../../../redux/state";
+import {Action, MassagesUsersType,} from "../../../redux/state";
+import {addMessageInStateActionCreator, updateNewMessageTextActionCreator} from "../../../redux/dialogs-reducer";
 
 type Props = {
     massagesUsers: MassagesUsersType[],

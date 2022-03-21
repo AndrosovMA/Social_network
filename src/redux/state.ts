@@ -1,8 +1,5 @@
-/** action_type conception Redux*/
-const UPDATE_NEW_POST_TEXT: string = 'UPDATE_NEW_POST_TEXT';
-const ADD_POST_IN_STATE: string = 'ADD_POST_IN_STATE';
-const UPDATE_MESSAGE_IN_STATE: string = 'UPDATE_MESSAGE_IN_STATE';
-const ADD_MESSAGE_IN_STATE: string = 'ADD_MESSAGE_IN_STATE';
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
 
 /** description types*/
 export type PostType = {
@@ -82,60 +79,13 @@ export const store: Store = {
 
     /** dispatch conception Redux*/
     dispatch(action: Action) {
-        if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profile.newPostText = action.value;
-            this._callSubscriber(store);
+        this._state.profile = profileReducer(action, store._state.profile);
+        this._state.dialogs = dialogsReducer(action, store._state.dialogs);
 
-        } else if (action.type === ADD_POST_IN_STATE) {
-            let newPost = {
-                id: this._state.profile.posts.length + 1,
-                message: action.value,
-                likeCount: 0
-            }
-            this._state.profile.posts.push(newPost);
-            this._state.profile.newPostText = '';
-            this._callSubscriber(store);
-
-        } else if (action.type === UPDATE_MESSAGE_IN_STATE) {
-            this._state.dialogs.newMessageText = action.value;
-            this._callSubscriber(store)
-
-        } else if (action.type === ADD_MESSAGE_IN_STATE) {
-            let newMassageUser = {
-                id: this._state.dialogs.massagesUsers.length +1,
-                message: this._state.dialogs.newMessageText
-            };
-            this._state.dialogs.massagesUsers.push(newMassageUser);
-            this._state.dialogs.newMessageText = '';
-            this._callSubscriber(store);
-        }
+        this._callSubscriber(store);
     }
 }
 
-/** action creator - conception Redux*/
-export const updateNewPostTextActionCreator = (symbol: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        value: symbol
-    }
-};
-export const addPostInStateActionCreator = (text: string) => {
-    return {
-        type: ADD_POST_IN_STATE,
-        value: text
-    }
-};
-export const updateNewMessageTextActionCreator = (symbol: string) => {
-    return {
-        type: UPDATE_MESSAGE_IN_STATE,
-        value: symbol
-    }
-};
-export const addMessageInStateActionCreator = () => {
-    return {
-        type: ADD_MESSAGE_IN_STATE,
-    }
-};
 
 
 

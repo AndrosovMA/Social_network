@@ -3,8 +3,8 @@ import React, {FC} from "react";
 import {Action, PostType} from "../../../redux/state";
 
 /** action creator - conception Redux*/
-import {updateNewPostTextActionCreator} from "../../../redux/state";
-import {addPostInStateActionCreator} from "../../../redux/state";
+import {updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
+import {addPostInStateActionCreator} from "../../../redux/profile-reducer";
 
 type Props = {
     posts: PostType[],

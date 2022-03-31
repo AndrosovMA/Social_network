@@ -15,13 +15,13 @@ import {Settings} from "./components/settings/Settings";
 
 /** Types*/
 import {FC} from "react";
-import {Store} from "./redux/state";
-
-type PropsApp = {
-    store: Store
+import {StoreType} from "./redux/redux-store";
+type PropsType = {
+    store: StoreType
 }
 
-const App: FC<PropsApp> = (props) => {
+
+const App: FC<PropsType> = (props) => {
 
     return (
         <Router>
@@ -30,11 +30,11 @@ const App: FC<PropsApp> = (props) => {
                 <Navbar/>
 
                 <Routes>
-                    <Route path="/Profile" element={<Profile profile={props.store.getState().profile}
-                                                             dispatch={props.store.dispatch.bind(props.store)}/>}
+                    <Route path="/Profile" element={<Profile profile={props.store.getState().profileReducer}
+                                                             dispatch={props.store.dispatch}/>}
                     />
-                    <Route path="/Dialogs" element={<Dialogs dialogs={props.store.getState().dialogs}
-                                                             dispatch={props.store.dispatch.bind(props.store)}/>}/>
+                    <Route path="/Dialogs" element={<Dialogs dialogs={props.store.getState().dialogsReducer}
+                                                             dispatch={props.store.dispatch}/>}/>
                     <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
@@ -47,3 +47,8 @@ const App: FC<PropsApp> = (props) => {
 export default App;
 
 
+// type PropsApp = {
+//     store: StoreType
+//     state: StateType
+//     dispatch: Dispatch<Action>
+// }

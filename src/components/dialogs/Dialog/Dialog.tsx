@@ -1,7 +1,11 @@
 import {NavLink} from "react-router-dom";
 import {FC} from "react";
-import {DialogsUsersType} from "../../../redux/state";
 
+/** Types*/
+type DialogsUsersType = {
+    id: number,
+    user: string,
+}
 type Props = {
     dialogsUsers: Array<DialogsUsersType>;
 }

@@ -1,18 +1,27 @@
 import Post from "./post/Post";
 import React, {FC} from "react";
-import {Action, PostType} from "../../../redux/state";
 
 /** action creator - conception Redux*/
 import {updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 import {addPostInStateActionCreator} from "../../../redux/profile-reducer";
 
-type Props = {
+/** Types*/
+type ActionType = {
+    type: string
+    value?: string
+}
+type PostType = {
+    id: number
+    message: string | undefined
+    likeCount: number
+}
+type PropsType = {
     posts: PostType[],
     newPostText: string | undefined,
-    dispatch:(action:Action) => void
+    dispatch:(action:ActionType) => void
 }
 
-const MyPost: FC<Props> = (props) => {
+const MyPost: FC<PropsType> = (props) => {
 
     let posts = props.posts.map((el) => {
         return (

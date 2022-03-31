@@ -1,10 +1,8 @@
-import {Action, DialogsType} from "./state";
-
 /** action_type*/
 const UPDATE_MESSAGE_IN_STATE: string = 'UPDATE_MESSAGE_IN_STATE';
 const ADD_MESSAGE_IN_STATE: string = 'ADD_MESSAGE_IN_STATE';
 
-/** action creator - conception Redux*/
+/** action creator*/
 export const updateNewMessageTextActionCreator = (symbol: string) => {
     return {
         type: UPDATE_MESSAGE_IN_STATE,
@@ -17,20 +15,55 @@ export const addMessageInStateActionCreator = () => {
     }
 };
 
-export const dialogsReducer = (action: Action, store: DialogsType)=> {
+/** type*/
+type DialogsUsersType = {
+    id: number,
+    user: string,
+}
+type MassagesUsersType = {
+    id: number,
+    message: string | undefined,
+}
+export type DialogsType = {
+    dialogsUsers: Array<DialogsUsersType>,
+    massagesUsers: Array<MassagesUsersType>,
+    newMessageText: string | undefined
+}
+type ActionType = {
+    type: string
+    value?: string
+}
+
+const initialState = {
+    dialogsUsers: [
+        {id: 1, user: 'Max'},
+        {id: 2, user: 'Ivan'},
+        {id: 3, user: 'Georgy'},
+        {id: 4, user: 'Olga'},
+    ],
+    massagesUsers: [
+        {id: 1, message: "happy coding"},
+        {id: 2, message: "good hacking"},
+        {id: 3, message: "i'm learn TS"},
+        {id: 4, message: "i'm learn react-router v.6"},
+    ],
+    newMessageText: '',
+}
+
+export const dialogsReducer = (state: DialogsType = initialState, action: ActionType) => {
     switch (action.type) {
         case UPDATE_MESSAGE_IN_STATE:
-            store.newMessageText = action.value;
-            return store;
+            state.newMessageText = action.value;
+            return state;
         case  ADD_MESSAGE_IN_STATE:
             let newMassageUser = {
-                id: store.massagesUsers.length +1,
-                message: store.newMessageText
+                id: state.massagesUsers.length + 1,
+                message: state.newMessageText
             };
-            store.massagesUsers.push(newMassageUser);
-            store.newMessageText = '';
-            return store;
+            state.massagesUsers.push(newMassageUser);
+            state.newMessageText = '';
+            return state;
         default:
-            return store;
+            return state;
     }
 }

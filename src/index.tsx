@@ -6,14 +6,16 @@ import ReactDOM from "react-dom";
 import './scss/index.scss';
 
 /** Data information*/
-import {store} from "./redux/state";
+import {store} from "./redux/redux-store";
 
-/** Components and Type*/
+/** Components*/
 import App from "./App";
-import {Store} from "./redux/state";
+
+/** Types*/
+import {StoreType} from "./redux/redux-store";
 
 
-const RerenderEntireTree = (store: Store) => {
+const rerenderEntireTree = (store: StoreType) => {
     ReactDOM.render(
         <React.StrictMode>
             <App store={store}/>
@@ -21,9 +23,12 @@ const RerenderEntireTree = (store: Store) => {
         document.getElementById('root')
     );
 }
-RerenderEntireTree(store);
+rerenderEntireTree(store);
 
-store.subscribe(RerenderEntireTree);
+// store.subscribe(rerenderEntireTree); // redux store когда уведомляет подписчиков не передает им state, перепишем subscribe:
+store.subscribe(() => {
+    rerenderEntireTree(store)
+})
 
 
 

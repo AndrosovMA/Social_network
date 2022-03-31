@@ -2,44 +2,44 @@ import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 
 /** description types*/
-export type PostType = {
+type PostType = {
     id: number
     message: string | undefined
     likeCount: number
 }
-export type DialogsUsersType = {
+type DialogsUsersType = {
     id: number,
     user: string,
 }
-export type MassagesUsersType = {
+type MassagesUsersType = {
     id: number,
     message: string | undefined,
 }
-export type ProfileType = {
+type ProfileType = {
     posts: Array<PostType>,
     newPostText: string | undefined,
 }
-export type DialogsType = {
+type DialogsType = {
     dialogsUsers: Array<DialogsUsersType>,
     massagesUsers: Array<MassagesUsersType>,
     newMessageText: string | undefined
 }
-export type State = {
+type State = {
     profile: ProfileType,
     dialogs: DialogsType,
 }
-export type Store = {
-    _callSubscriber: (store: Store) => void,
+type Store = {
+    _callSubscriber: (state: State) => void,
     _state: State,
     getState: () => State
-    subscribe: (observer: (store: Store) => void) => void
+    subscribe: (observer: (state: State) => void) => void
     dispatch: (action: Action) => void
 }
-export type Action = {
+type Action = {
     type: string
     value?: string
 }
-export type ActionCreator = (text:string)=> Action;
+type ActionCreator = (text:string)=> Action;
 
 export const store: Store = {
     _callSubscriber(store) {
@@ -79,10 +79,9 @@ export const store: Store = {
 
     /** dispatch conception Redux*/
     dispatch(action: Action) {
-        this._state.profile = profileReducer(action, store._state.profile);
-        this._state.dialogs = dialogsReducer(action, store._state.dialogs);
-
-        this._callSubscriber(store);
+        // this._state.profile = profileReducer(action, this._state.profile);
+        // this._state.dialogs = dialogsReducer(action, this._state.dialogs);
+        // this._callSubscriber(this._state);
     }
 }
 

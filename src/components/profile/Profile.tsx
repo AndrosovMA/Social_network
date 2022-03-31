@@ -6,15 +6,18 @@ import {MyPost} from "./my_post/MyPost";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
 /** Types*/
-import {ProfileType, Action } from "../../redux/state";
-import {FC} from "react";
-
-type Props = {
+import {Dispatch, FC} from "react";
+import {ProfileType} from "../../redux/profile-reducer";
+type ActionType = {
+    type: string
+    value?: string
+}
+type PropsType = {
     profile: ProfileType
-    dispatch: (acton: Action) => void
+    dispatch: Dispatch<ActionType>
 }
 
-const Profile: FC<Props> = (props) => {
+const Profile: FC<PropsType> = (props) => {
 
     return (
         <div className='profile'>

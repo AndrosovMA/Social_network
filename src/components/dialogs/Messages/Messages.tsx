@@ -1,11 +1,19 @@
 import React, {FC} from "react";
-import {Action, MassagesUsersType,} from "../../../redux/state";
 import {addMessageInStateActionCreator, updateNewMessageTextActionCreator} from "../../../redux/dialogs-reducer";
 
+/** Types*/
+type ActionType = {
+    type: string
+    value?: string
+}
+type MassagesUsersType = {
+    id: number,
+    message: string | undefined,
+}
 type Props = {
     massagesUsers: MassagesUsersType[],
     newMessageText: string | undefined,
-    dispatch: (action: Action) => void
+    dispatch: (action: ActionType) => void
 }
 
 const Messages: FC<Props> = ({massagesUsers, newMessageText, dispatch}) => {

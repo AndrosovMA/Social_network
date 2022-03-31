@@ -1,12 +1,17 @@
+/** Components*/
 import {Dialog} from "./Dialog/Dialog";
 import {Messages} from "./Messages/Messages";
-import {Action, DialogsType} from "../../redux/state";
-import {FC} from "react";
 
-
+/** Types*/
+import {Dispatch, FC} from "react";
+import {DialogsType} from "../../redux/dialogs-reducer";
+type ActionType = {
+    type: string
+    value?: string
+}
 type propsType = {
     dialogs: DialogsType,
-    dispatch: (acton: Action) => void
+    dispatch: Dispatch<ActionType>
 }
 
 const Dialogs: FC<propsType> = (props) => {

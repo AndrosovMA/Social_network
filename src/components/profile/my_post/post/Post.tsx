@@ -7,7 +7,7 @@ type PropsType = {
     likeCount: number;
 }
 
-const Post: FC<PropsType> = ({message, likeCount}) => {
+export const Post: FC<PropsType> = ({message, likeCount}) => {
 
     return (
         <>
@@ -25,6 +25,5 @@ const Post: FC<PropsType> = ({message, likeCount}) => {
     )
 }
 
-export default Post;
 
 

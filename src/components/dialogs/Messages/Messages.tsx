@@ -1,34 +1,33 @@
 import React, {FC} from "react";
-import {addMessageInStateActionCreator, updateNewMessageTextActionCreator} from "../../../redux/dialogs-reducer";
 
 /** Types*/
-type ActionType = {
-    type: string
-    value?: string
-}
 type MassagesUsersType = {
     id: number,
     message: string | undefined,
 }
 type Props = {
-    massagesUsers: MassagesUsersType[],
-    newMessageText: string | undefined,
-    dispatch: (action: ActionType) => void
+    massagesUsers: MassagesUsersType[]
+    newMessageText: string | undefined
+    addNewMessage: () => void
+    onChangeTextTextarea: (value: string) => void
 }
 
-const Messages: FC<Props> = ({massagesUsers, newMessageText, dispatch}) => {
-    let messages = massagesUsers.map((el) => {
+const Messages: FC<Props> = ({
+                                 massagesUsers,
+                                 newMessageText,
+                                 addNewMessage,
+                                 onChangeTextTextarea
+                             }) => {
+    const messages = massagesUsers.map((el) => {
         return (
             <div className="user__message" key={el.id}>
                 {el.message}
             </div>)
     })
     const changeTextTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(updateNewMessageTextActionCreator(event.currentTarget.value))
+        onChangeTextTextarea(event.currentTarget.value)
     };
-    const addNewMessage = () => {
-        dispatch(addMessageInStateActionCreator())
-    }
+
     return (
 
         <div className="messages__users">

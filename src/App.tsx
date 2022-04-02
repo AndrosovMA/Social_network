@@ -8,20 +8,20 @@ import {Navbar} from "./components/navbar/Navbar";
 
 /** Navigation components*/
 import {Profile} from "./components/profile/Profile";
-import {Dialogs} from "./components/dialogs/Dialogs";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
+import {DialogsContainer} from "./components/dialogs/DialogsConteiner";
 
 /** Types*/
 import {FC} from "react";
 import {StoreType} from "./redux/redux-store";
+
 type PropsType = {
     store: StoreType
 }
 
-
-const App: FC<PropsType> = (props) => {
+const App: FC<PropsType> = ({store}) => {
 
     return (
         <Router>
@@ -30,11 +30,8 @@ const App: FC<PropsType> = (props) => {
                 <Navbar/>
 
                 <Routes>
-                    <Route path="/Profile" element={<Profile profile={props.store.getState().profileReducer}
-                                                             dispatch={props.store.dispatch}/>}
-                    />
-                    <Route path="/Dialogs" element={<Dialogs dialogs={props.store.getState().dialogsReducer}
-                                                             dispatch={props.store.dispatch}/>}/>
+                    <Route path="/Profile" element={<Profile store={store}/>}/>
+                    <Route path="/Dialogs" element={<DialogsContainer store={store}/>}/>
                     <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
@@ -46,9 +43,3 @@ const App: FC<PropsType> = (props) => {
 
 export default App;
 
-
-// type PropsApp = {
-//     store: StoreType
-//     state: StateType
-//     dispatch: Dispatch<Action>
-// }

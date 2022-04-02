@@ -1,27 +1,27 @@
 /** Components*/
 import {Dialog} from "./Dialog/Dialog";
 import {Messages} from "./Messages/Messages";
+import {addMessageInStateActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer";
 
 /** Types*/
-import {Dispatch, FC} from "react";
+import React, {FC} from "react";
 import {DialogsType} from "../../redux/dialogs-reducer";
-type ActionType = {
-    type: string
-    value?: string
-}
+
 type propsType = {
     dialogs: DialogsType,
-    dispatch: Dispatch<ActionType>
+    addNewMessage: () => void
+    onChangeTextTextarea: (value: string) => void
 }
 
-const Dialogs: FC<propsType> = (props) => {
+const Dialogs: FC<propsType> = ({addNewMessage, onChangeTextTextarea, dialogs}) => {
 
     return (
         <div className='dialogs'>
-            <Dialog dialogsUsers={props.dialogs.dialogsUsers}/>
-            <Messages massagesUsers={props.dialogs.massagesUsers}
-                      newMessageText = {props.dialogs.newMessageText}
-                      dispatch={props.dispatch}/>
+            <Dialog dialogsUsers={dialogs.dialogsUsers}/>
+            <Messages massagesUsers={dialogs.massagesUsers}
+                      newMessageText={dialogs.newMessageText}
+                      addNewMessage={addNewMessage}
+                      onChangeTextTextarea={onChangeTextTextarea}/>
         </div>
     )
 }

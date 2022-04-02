@@ -4,30 +4,24 @@ import content_img from '../../img/content.jpg'
 /** Components*/
 import {MyPost} from "./my_post/MyPost";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
+import {MyPostContainer} from "./my_post/MyPostContainer";
 
 /** Types*/
-import {Dispatch, FC} from "react";
-import {ProfileType} from "../../redux/profile-reducer";
-type ActionType = {
-    type: string
-    value?: string
-}
+import {FC} from "react";
+import {StoreType} from "../../redux/redux-store";
+
 type PropsType = {
-    profile: ProfileType
-    dispatch: Dispatch<ActionType>
+    store: StoreType
 }
 
-const Profile: FC<PropsType> = (props) => {
+const Profile: FC<PropsType> = ({store}) => {
 
     return (
         <div className='profile'>
             <img className='profile__img' src={content_img} alt=""/>
 
             <ProfileInfo/>
-            <MyPost posts={props.profile.posts}
-                    newPostText={props.profile.newPostText}
-                    dispatch={props.dispatch}
-            />
+            <MyPostContainer store={store}/>
         </div>
     )
 }

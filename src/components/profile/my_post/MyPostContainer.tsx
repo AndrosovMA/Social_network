@@ -9,7 +9,6 @@ import {addPostInStateActionCreator} from "../../../redux/profile-reducer";
 import {DispatchType, StateType} from "../../../redux/redux-store";
 
 
-
 const mapStateToProps = (state: StateType) => {
     return {
         posts: state.profileReducer.posts,

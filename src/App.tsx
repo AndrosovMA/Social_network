@@ -13,15 +13,7 @@ import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
 import {DialogsContainer} from "./components/dialogs/DialogsConteiner";
 
-/** Types*/
-import {FC} from "react";
-import {StoreType} from "./redux/redux-store";
-
-type PropsType = {
-    store: StoreType
-}
-
-const App: FC<PropsType> = ({store}) => {
+const App = () => {
 
     return (
         <Router>
@@ -30,8 +22,8 @@ const App: FC<PropsType> = ({store}) => {
                 <Navbar/>
 
                 <Routes>
-                    <Route path="/Profile" element={<Profile store={store}/>}/>
-                    <Route path="/Dialogs" element={<DialogsContainer store={store}/>}/>
+                    <Route path="/Profile" element={<Profile/>}/>
+                    <Route path="/Dialogs" element={<DialogsContainer/>}/>
                     <Route path="/News" element={<News/>}/>
                     <Route path="/Music" element={<Music/>}/>
                     <Route path="/Settings" element={<Settings/>}/>

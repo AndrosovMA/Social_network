@@ -1,6 +1,7 @@
 /** React*/
 import React from 'react';
 import ReactDOM from "react-dom";
+import {Provider} from "react-redux";
 
 /** CSS*/
 import './scss/index.scss';
@@ -18,14 +19,15 @@ import {StoreType} from "./redux/redux-store";
 const rerenderEntireTree = (store: StoreType) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store}/>
+            <Provider store={store}>
+                <App/>
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 rerenderEntireTree(store);
 
-// store.subscribe(rerenderEntireTree); // redux store когда уведомляет подписчиков не передает им state, перепишем subscribe:
 store.subscribe(() => {
     rerenderEntireTree(store)
 })

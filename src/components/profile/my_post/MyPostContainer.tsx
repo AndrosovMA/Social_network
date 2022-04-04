@@ -1,33 +1,30 @@
-import React, {FC} from "react";
-import { MyPost } from "./MyPost";
+import {MyPost} from "./MyPost";
+import {connect} from "react-redux";
 
 /** action creator - conception Redux*/
 import {updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 import {addPostInStateActionCreator} from "../../../redux/profile-reducer";
 
 /** Types*/
-import {StoreType} from "../../../redux/redux-store";
-type PropsType = {
-    store: StoreType
-}
+import {DispatchType, StateType} from "../../../redux/redux-store";
 
-const MyPostContainer: FC<PropsType> = ({store}) => {
 
-    const addPost = (value: string) => {
-        store.dispatch(addPostInStateActionCreator(value))
 
-    };
-    const changeTextarea = (value: string) => {
-        store.dispatch(updateNewPostTextActionCreator(value));
+const mapStateToProps = (state: StateType) => {
+    return {
+        posts: state.profileReducer.posts,
+        newPostText: state.profileReducer.newPostText
     }
+};
+const mapDispatchToProps = (dispatch: DispatchType) => {
+    return {
+        addPost: (value: string) => {
+            dispatch(addPostInStateActionCreator(value))
+        },
+        changeTextarea: (value: string) => {
+            dispatch(updateNewPostTextActionCreator(value))
+        }
+    }
+};
 
-    return (
-        <MyPost posts={store.getState().profileReducer.posts}
-                newPostText={store.getState().profileReducer.newPostText}
-                addPost={addPost}
-                changeTextarea={changeTextarea}/>
-    )
-}
-
-export {MyPostContainer};
-
+export const MyPostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPost);

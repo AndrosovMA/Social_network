@@ -11,6 +11,7 @@
 .header {
     grid-area: header;
     background-color: lightblue;
+
     .logo {
         width: 95px;
         height: 60px;
@@ -65,6 +66,7 @@
         h3 {
             margin: 15px 0 5px 0;
         }
+
         input[type='button'] {
             margin: 0 0 10px 0;
         }
@@ -88,14 +90,14 @@
     background-color: lightgray;
     display: flex;
 
-    .dialogs__users{
+    .dialogs__users {
         padding: 10px 10px;
     }
-    .messages__users{
+
+    .messages__users {
         padding: 10px 10px;
     }
 }
-
 
 .music {
     grid-area: content;
@@ -110,4 +112,61 @@
 .settings {
     grid-area: content;
     background-color: lightgray;
+}
+
+
+.container__users {
+    display: flex;
+    flex-direction: column;
+
+    .container__user {
+        background-color: lightgray;
+        display: flex;
+        justify-content: left;
+        padding: 10px 0 10px 0;
+
+        .left__info {
+            margin-left: 20px;
+
+            .avatar {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                img {
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+        }
+
+        .right__info {
+            border: solid lightskyblue;
+            border-radius: 4%;
+            height: 120px;
+            width: 400px;
+            margin-left: 20px;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .user__info {
+                padding-left: 20px;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .user__location {
+                padding-left: 20px;
+                padding-right: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+        }
+
+    }
 }

@@ -2,7 +2,7 @@
 const UPDATE_NEW_POST_TEXT: string = 'UPDATE_NEW_POST_TEXT';
 const ADD_POST_IN_STATE: string = 'ADD_POST_IN_STATE';
 
-/** action creator - conception Redux*/
+/** action creator*/
 export const updateNewPostTextActionCreator = (symbol: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
